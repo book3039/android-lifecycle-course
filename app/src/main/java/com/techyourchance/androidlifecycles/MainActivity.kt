@@ -4,12 +4,14 @@ import android.app.Application
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var backgroundDetector: BackgroundDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Timber.i("onCreate()")
 
         val application = this.applicationContext as Application
 
@@ -23,13 +25,18 @@ class MainActivity : AppCompatActivity() {
             SecondActivity.start(this)
         }
     }
-
+    override fun onDestroy() {
+        Timber.i("onDestroy()")
+        super.onDestroy()
+    }
     override fun onStart() {
+        Timber.i("onStart()")
         super.onStart()
         backgroundDetector.activityStarted()
     }
 
     override fun onStop() {
+        Timber.i("onStop()")
         super.onStop()
         backgroundDetector.activityStopped()
     }
