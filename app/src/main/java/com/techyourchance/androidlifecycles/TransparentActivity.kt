@@ -23,20 +23,30 @@ class TransparentActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        Timber.i("onDestroy")
+        Timber.i("onDestroy()")
         super.onDestroy()
     }
 
     override fun onStart() {
-        Timber.i("onStart")
+        Timber.i("onStart()")
         super.onStart()
         backgroundDetector.activityStarted()
     }
 
     override fun onStop() {
-        Timber.i("onStop")
+        Timber.i("onStop()")
         super.onStop()
         backgroundDetector.activityStopped()
+    }
+
+    override fun onResume() {
+        Timber.i("onResume")
+        super.onResume()
+    }
+
+    override fun onPause() {
+        Timber.i("onPause")
+        super.onPause()
     }
 
     companion object {
