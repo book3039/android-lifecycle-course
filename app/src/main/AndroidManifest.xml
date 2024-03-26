@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLifecyclesCourse">
         <activity
+            android:name=".fragments.FragmentHostActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,8 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".SecondActivity" />
-
-        <activity android:name=".TransparentActivity" android:theme="@style/ThemeTranslucent"/>
+        <activity
+            android:name=".TransparentActivity"
+            android:theme="@style/ThemeTranslucent" />
     </application>
 
 </manifest>

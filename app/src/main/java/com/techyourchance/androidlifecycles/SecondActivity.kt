@@ -6,11 +6,12 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import timber.log.Timber
 
 
-class SecondActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity(), BackgroundDetector.Listener {
 
     private lateinit var backgroundDetector: BackgroundDetector
 
@@ -41,6 +42,7 @@ class SecondActivity : AppCompatActivity() {
     override fun onStart() {
         Timber.i("onStart()")
         super.onStart()
+        backgroundDetector.registerListener(this)
         backgroundDetector.activityStarted()
     }
 
@@ -48,6 +50,7 @@ class SecondActivity : AppCompatActivity() {
         Timber.i("onStop()")
         super.onStop()
         backgroundDetector.activityStopped()
+        backgroundDetector.unregisterListener(this)
     }
 
     override fun onResume() {
@@ -75,6 +78,13 @@ class SecondActivity : AppCompatActivity() {
             progress.visibility = View.GONE
         }
     }
+
+    override fun onBackground() {
+    }
+
+    override fun onForeground() {
+        Toast.makeText(this, "Foreground", Toast.LENGTH_SHORT).show()
+    }
     companion object {
         @JvmStatic
         fun start(context: Context) {
@@ -82,4 +92,6 @@ class SecondActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
+
+
 }
